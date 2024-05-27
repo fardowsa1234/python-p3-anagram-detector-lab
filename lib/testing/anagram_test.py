@@ -22,3 +22,33 @@ class TestAnagram:
     def test_match_two_returns_list_length_two(self):
         '''returns a list with two elements when two elements of the input list match the initialized word.'''
         assert(Anagram("enlist").match(["listen", "silent", "hippopotamus"]) == ["listen", "silent"])
+        
+        from lib.anagram import Anagram
+
+import unittest
+from lib.anagram import Anagram
+
+class TestAnagram(unittest.TestCase):
+    def test_anagram(self):
+        anagram = Anagram("listen")
+        self.assertTrue(anagram.is_anagram("silent"))
+        self.assertFalse(anagram.is_anagram("abc"))
+
+    def test_match_no_match(self):
+        anagram = Anagram("listen")
+        self.assertEqual(anagram.match(["abc", "def", "ghi"]), [])
+
+    def test_match_one_match(self):
+        anagram = Anagram("listen")
+        self.assertEqual(anagram.match(["enlists", "google", "inlets", "banana"]), ["inlets"])
+
+    def test_match_multiple_matches(self):
+        anagram = Anagram("listen")
+        self.assertEqual(anagram.match(["enlists", "google", "inlets", "banana", "silent"]), ["inlets", "silent"])
+
+    def test_match_two_returns_list_length_two(self):
+        '''returns a list with two elements when two elements of the input list match the initialized word.'''
+        self.assertEqual(Anagram("enlist").match(["listen", "silent", "hippopotamus"]), ["listen", "silent"])
+
+if __name__ == "__main__":
+    unittest.main()
